@@ -12,8 +12,9 @@
 	
 	
 
-	<div class="wrap shadow">
-		<div class="card">
+	<div class="wrap ">
+		<a href="data.php" class="btn btn-primary">All Student</a>
+		<div class="card shadow">
 			<div class="card-body">
 				<h2>Sign Up</h2>
 				<form action="">
@@ -32,6 +33,10 @@
 					<div class="form-group">
 						<label for="">Username</label>
 						<input class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label for="">Photo</label>
+						<input class="form-control" type="file">
 					</div>
 					<div class="form-group">
 						<input class="btn btn-primary" type="submit" value="Sign Up">
