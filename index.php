@@ -25,14 +25,35 @@ use App\Controller\Students;
 </head>
 <body>
 
-	
+	<?php 
+
+		/**
+		 * Student Form data get and manage here by POST method
+		 */
+		if (isset($_POST['submit'])) {
+
+			// value get
+			$name = $_POST['name'];
+			$email = $_POST['email'];
+			$cell = $_POST['cell'];
+			$photo = $_FILES['photo'];
+
+			if (empty($name) || empty($email) || empty($cell) || empty($photo) ) {
+				$message = '<p class="alert alert-danger">All field are requireds! <button class="close" data-dismiss="alert">&times;</button></p>';
+			}
+		}
+
+	?>
 
 	<div class="wrap ">
 		<a href="data.php" class="btn btn-primary">All Student</a>
 		<div class="card shadow">
 			<div class="card-body">
+				<?php if (isset($message)) {
+					echo $message;
+				} ?>
 				<h2>Sign Up</h2>
-				<form action="">
+				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="">Name</label>
 						<input name="name" class="form-control" type="text">
@@ -44,10 +65,6 @@ use App\Controller\Students;
 					<div class="form-group">
 						<label for="">Cell</label>
 						<input name="cell" class="form-control" type="text">
-					</div>
-					<div class="form-group">
-						<label for="">Username</label>
-						<input name="uname" class="form-control" type="text">
 					</div>
 					<div class="form-group">
 						<label for="">Photo</label>
