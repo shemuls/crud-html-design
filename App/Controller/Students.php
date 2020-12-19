@@ -13,13 +13,14 @@ use App\Support\Database;
 class Students extends Database
 {
     // Add student in table
-    public function AddNewStudent($name, $email, $cell, $img){
-        
+    public function AddNewStudent($name, $email, $cell, $photo){
+
+        $fileName= $this -> fileUpload($photo, 'Media/students/img'); /**get file name with formate from fileupload function */
         $queryData = $this -> insert('students', [
             "name" => $name,
             "email"=> $email,
             "cell"=> $cell,
-            "photo"=> $img,
+            "photo"=> $fileName,
         ]);
         
         // $queryData == true means: data successfully table a chole gese

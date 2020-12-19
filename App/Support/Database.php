@@ -20,6 +20,30 @@ abstract class Database
     {
          return $this -> connection =  new mysqli($this -> hostName, $this -> userName, $this -> Password, $this-> dbName);
     }
+
+    /**
+     * File upload method
+     */
+    protected function fileUpload($file, $location = '', $fileType = ['jpg', 'jpeg', 'png', 'gif'])
+    {
+        // File info get
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileSize = $file['size'];
+
+        // Find file formate ex: png, jpg etc
+        $getFileFormateName = explode('.', $fileName); /**Its a array */
+        $fileExtension = strtolower(end($getFileFormateName));
+
+        // Make file name unique
+        $uniqueFileName = md5(time().rand()) .'.' . $fileExtension;
+
+        // file upload in folder
+        move_uploaded_file($fileTmpName, $location . $uniqueFileName);
+
+        return $uniqueFileName;
+
+    }
     
     /**
      * Insert Data in Table

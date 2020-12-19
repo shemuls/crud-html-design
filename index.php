@@ -43,14 +43,13 @@ require_once "vendor/autoload.php";
 			$email = $_POST['email'];
 			$cell = $_POST['cell'];
 			$photo = $_FILES['photo'];
-			$img = 'comming Sooon';
 
 			if (empty($name) || empty($email) || empty($cell) || empty($photo) ) {
 				$message = '<p class="alert alert-danger">All field are requireds! <button class="close" data-dismiss="alert">&times;</button></p>';
 			}elseif(filter_var($email, FILTER_VALIDATE_EMAIL) == false){
 				$message = '<p class="alert alert-danger">Invalid email address! <button class="close" data-dismiss="alert">&times;</button></p>';
 			}else{
-				$message = $student -> AddNewStudent($name, $email, $cell, $img);
+				$message = $student -> AddNewStudent($name, $email, $cell, $photo);
 			}
 		}
 
