@@ -49,7 +49,8 @@ class Students extends Database
     // Show single student
     public function showSingleStudent($id)
     {
-        echo $id;
+        $queryData = $this -> find('students', $id);
+        return $queryData -> fetch_assoc();
     }
 
 

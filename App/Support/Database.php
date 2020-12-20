@@ -100,8 +100,14 @@ abstract class Database
     }
 
     /**
-     * 
+     * Show single data from table
      */
+    protected function find($tableName, $id)
+    {
+        $sql = "SELECT * FROM $tableName WHERE id='$id'";
+        $queryData = $this -> connection() -> query($sql);
+        return $queryData;
+    }
 
 
 }
