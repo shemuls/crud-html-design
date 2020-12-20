@@ -80,7 +80,7 @@ require_once "vendor/autoload.php";
 								<td><img src="media/students/img/<?php echo $singleData['photo']; ?>" alt=""></td>
 								<td>
 									<a class="btn btn-sm btn-info" href="show.php?id=<?php echo $singleData['id']; ?>">View</a>
-									<a class="btn btn-sm btn-warning" href="#">Edit</a>
+									<a class="btn btn-sm btn-warning" href="edit.php?id=<?php echo $singleData['id']; ?>">Edit</a>
 									<a class="btn btn-sm btn-danger" href="?delete=<?php echo $singleData['id']; ?>">Delete</a>
 								</td>
 							</tr>

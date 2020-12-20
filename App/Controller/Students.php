@@ -53,5 +53,33 @@ class Students extends Database
         return $queryData -> fetch_assoc();
     }
 
+    // Edit single student data
+    public function editSingleStudentData($id)
+    {
+        $showQueryData = $this -> find('students', $id);
+        return $showQueryData -> fetch_assoc();
+
+    }
+    // Update single student data
+    public function updateSingleStudentData($id, $name, $email, $cell, $photo, $oldPhoto)
+    {
+        
+        if (empty($photo['name'])) {
+            $fileName = $oldPhoto;
+        }else{
+            $fileName= $this -> fileUpload($photo, 'Media/students/img/'); /**get file name with formate from fileupload function */
+            unlink('Media/students/img/'.$oldPhoto);
+        }
+
+        $this -> update('students',$id, [
+            "name"  => $name,
+            "email" => $email,
+            "cell"  => $cell,
+            "photo" => $fileName,
+        ]);
+        
+        return '<p class="alert alert-success">Data updated successfully! <button class="close" data-dismiss="alert">&times;</button></p>';
+    }
+
 
 }

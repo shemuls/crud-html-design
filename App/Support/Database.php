@@ -109,5 +109,24 @@ abstract class Database
         return $queryData;
     }
 
+    /**
+     * Update single data from table
+     */
+    protected function update($tableName, $id, array $values)
+    {   
+        
+        foreach ($values as $key => $value) {
+            $updateTableData_with_TableColName[] = $key .'='. "'" .$value. "'"; /**array datar key and value alada korsi then majkhane = add korsi */
+        }
+        $tableCol_and_Data = implode(',', $updateTableData_with_TableColName);
+
+        $sql = "UPDATE $tableName SET  $tableCol_and_Data WHERE id='$id'";
+        $queryData = $this -> connection() -> query($sql);
+
+        if ($queryData) {
+            return true;
+        }
+    }
+
 
 }
