@@ -1,3 +1,22 @@
+<?php
+/**
+ * Autoload connection for all namespace auto load
+ */
+require_once "vendor/autoload.php";
+
+	/**
+	 * class Use 
+	 */
+	use App\Controller\Students; 
+
+
+	/**
+	 * Class Instance
+	 */
+	$student =  new Students;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,66 +48,37 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
+
+
+						<?php 
+							$allData = $student -> showAllstudent();
+
+						if (!empty($allData->num_rows)) {
+							$i = 1;
+							while ($singleData = $allData -> fetch_assoc()) :
+						?>
+							<tr>
+								<td><?php echo $i; $i++; ?></td>
+								<td><?php echo $singleData['name']; ?></td>
+								<td><?php echo $singleData['email']; ?></td>
+								<td><?php echo $singleData['cell']; ?></td>
+								<td><img src="media/students/img/<?php echo $singleData['photo']; ?>" alt=""></td>
+								<td>
+									<a class="btn btn-sm btn-info" href="#">View</a>
+									<a class="btn btn-sm btn-warning" href="#">Edit</a>
+									<a class="btn btn-sm btn-danger" href="#">Delete</a>
+								</td>
+							</tr>
+
+						<?php 
+							endwhile;
+						}else{
+							echo 'No result Found';
+						}		
+						?>
+
+
+						
 						
 
 					</tbody>

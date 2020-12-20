@@ -73,5 +73,17 @@ abstract class Database
       
     }
 
+    /**
+     * All data get from table
+     */
+    protected function all($tableName, $orderBy){
+        $sql = "SELECT * FROM $tableName ORDER BY id $orderBy";
+        $queryData = $this -> connection() -> query($sql);
+
+        if ( !empty($queryData->num_rows) ) { /**Jodi $queryData ar vitor data thake tahole return */
+            return $queryData;
+        }
+    }
+
 
 }
