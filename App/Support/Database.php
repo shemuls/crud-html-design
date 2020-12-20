@@ -76,7 +76,8 @@ abstract class Database
     /**
      * All data get from table
      */
-    protected function all($tableName, $orderBy){
+    protected function all($tableName, $orderBy)
+        {
         $sql = "SELECT * FROM $tableName ORDER BY id $orderBy";
         $queryData = $this -> connection() -> query($sql);
 
@@ -84,6 +85,23 @@ abstract class Database
             return $queryData;
         }
     }
+
+    /**
+     * Delete data form table by id method
+     */
+    protected function delete($tableName, $id)
+    {
+        $sql = "DELETE FROM $tableName WHERE id='$id'";
+        $queryData = $this -> connection() -> query($sql);
+
+        if ($queryData) {
+            return true;
+        }
+    }
+
+    /**
+     * 
+     */
 
 
 }

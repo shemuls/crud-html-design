@@ -37,4 +37,20 @@ class Students extends Database
             return $allData;
         }
     }
+    // Delete student data
+    public function deleteStudentData($deletId)
+    {
+        $data = $this -> delete('students',$deletId);
+        if ($data) {
+            return '<p class="alert alert-success">Data delete successfully! <button class="close" data-dismiss="alert">&times;</button></p>';
+        }
+    }
+
+    // Show single student
+    public function showSingleStudent($id)
+    {
+        echo $id;
+    }
+
+
 }

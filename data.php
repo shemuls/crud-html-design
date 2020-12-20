@@ -15,6 +15,16 @@ require_once "vendor/autoload.php";
 	 */
 	$student =  new Students;
 
+	/**
+	 * Data Delete
+	 */
+	if (isset($_GET['delete'])) {
+		$deletId = $_GET['delete'];
+		$deleteDone = $student -> deleteStudentData($deletId);
+	}
+	
+	
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +45,11 @@ require_once "vendor/autoload.php";
 		<a href="index.php" class="btn btn-primary">Add Student</a>
 		<div class="card shadow">
 			<div class="card-body">
+				<?php 
+					if (isset($deleteDone)) {
+						echo $deleteDone;
+					}
+				?>
 				<h2>All Data</h2>
 				<table class="table table-striped">
 					<thead>
@@ -64,9 +79,9 @@ require_once "vendor/autoload.php";
 								<td><?php echo $singleData['cell']; ?></td>
 								<td><img src="media/students/img/<?php echo $singleData['photo']; ?>" alt=""></td>
 								<td>
-									<a class="btn btn-sm btn-info" href="#">View</a>
+									<a class="btn btn-sm btn-info" href="show.php?id=<?php echo $singleData['id']; ?>">View</a>
 									<a class="btn btn-sm btn-warning" href="#">Edit</a>
-									<a class="btn btn-sm btn-danger" href="#">Delete</a>
+									<a class="btn btn-sm btn-danger" href="?delete=<?php echo $singleData['id']; ?>">Delete</a>
 								</td>
 							</tr>
 
